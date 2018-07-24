@@ -13,14 +13,19 @@ const markdownPack = (html) => {
     return `<div class="markdown-body">${html}</div>`;
 };
 
+const preToSegment = (html) => {
+    return html.replace(/<pre>[\s\S]+?<\/pre>/g,`<div class='ui segment'>
+    <div class="ui top attached label"><a class="copy context">Copy</a></div>$&</div>`)
+};
+
 const _render = md.render;
 
 md.render = function () {
-    return markdownPack(_render.apply(md, arguments));
+    return markdownPack(preToSegment(_render.apply(md, arguments)));
 };
 
 md.renderRaw = function () {
-    return md.renderInline(...arguments);
+    return preToSegment(md.renderInline(...arguments));
 };
 
 module.exports = md;
