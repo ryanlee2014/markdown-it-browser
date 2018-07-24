@@ -1,5 +1,6 @@
 import css from "../css/github-markdown.css"
 import css2 from "../css/github.min.css"
+
 const md = require("markdown-it")({
     html: true,
     breaks: true
@@ -14,7 +15,12 @@ const markdownPack = (html) => {
 
 const _render = md.render;
 
-md.render = function(){
+md.render = function () {
     return markdownPack(_render.apply(md, arguments));
 };
+
+md.renderRaw = function () {
+    return md.renderInline(...arguments);
+};
+
 module.exports = md;
