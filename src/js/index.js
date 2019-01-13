@@ -7,8 +7,13 @@ const md = require("markdown-it")({
 });
 const mh = require("markdown-it-highlightjs");
 const mk = require("@ryanlee2014/markdown-it-katex");
+const mc = require("./markdonw-it-table-contents");
+const ma = require("markdown-it-anchor");
 md.use(mk);
 md.use(mh);
+md.use(ma);
+md.use(mc, {includeLevel: [1,2], listType: "div class='ui bulleted link list'"});
+
 const markdownPack = (html) => {
     return `<div class="markdown-body">${html}</div>`;
 };
