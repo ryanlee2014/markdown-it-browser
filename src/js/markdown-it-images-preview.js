@@ -12,35 +12,28 @@
 module.exports = function (md, config) {
     md.image_add = function (src, data) {
         if (!(md.__image instanceof Object))
-            md.__image = {}
+        { md.__image = {} }
         md.__image[src] = data;
     }
     md.image_del = function (src) {
         if (!(md.__image instanceof Object))
-            md.__image = {}
+        { md.__image = {} }
         delete md.__image[src];
     }
     var imagedefault = md.renderer.rules.image;
     md.renderer.rules.image = function (tokens, idx, options, env, slf) {
         var _attrs = tokens[idx].attrs;
-        console.log(_attrs);
-        console.log(md);
-        //if(md.__image instanceof Object){
-        for (var i = 0; i < _attrs.length; i++) {
-            var validate = false;
-            if (!isNaN(_attrs[i][1])) {
-                validate = true;
-            }
-
-            if (_attrs[i][0] === 'src' /*&& md.__image.hasOwnProperty(tokens[idx].attrs[i][1])*/ && validate === true) {
-                _attrs.push(['rel', _attrs[i][1]]);
-                //_attrs[i][1] = md.__image[tokens[idx].attrs[i][1]]
-                _attrs[i][1] = "/images/" + md.problem_id + "/" + md.key + "/" + _attrs[i][1] + ".jpg";
-                console.log(_attrs[i]);
-                break;
+        console.log("_attrs", _attrs);
+        if (md.__image instanceof Object) {
+            console.log("In loop");
+            for (var i = 0; i < _attrs.length; i++) {
+                if (_attrs[i][0] === 'src' && md.__image.hasOwnProperty(tokens[idx].attrs[i][1])) {
+                    _attrs.push(['rel', _attrs[i][1]]);
+                    _attrs[i][1] = md.__image[tokens[idx].attrs[i][1]]
+                    break;
+                }
             }
         }
-        //}
         return imagedefault(tokens, idx, options, env, slf);
     }
 }
