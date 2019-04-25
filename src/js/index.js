@@ -15,6 +15,7 @@ function Instance(key = "", problem_id = "") {
     md.use(ma);
     md.use(mc, {includeLevel: [1, 2], listType: "div class='ui bulleted link list'"});
     md.use(mi);
+    md.use(require("./markdown-it-links"));
 
     const markdownPack = (html) => {
         return `<div class="markdown-body">${html}</div>`;
