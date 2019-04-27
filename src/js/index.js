@@ -1,5 +1,6 @@
 import css from "../css/github-markdown.css"
 import css2 from "../css/github.min.css"
+import css3 from "katex/dist/katex.min.css"
 function Instance(key = "", problem_id = "") {
     const md = require("markdown-it")({
         html: true,

@@ -9,7 +9,7 @@ module.exports = {
         library: 'markdownIt',
         libraryTarget: 'umd'
     },
-    module:{
+    module: {
         rules: [
             {
                 test: /\.js$/,
@@ -20,7 +20,7 @@ module.exports = {
                         presets: [
                             ["env", {
                                 "targets": {
-                                    "browsers": [ "defaults","not ie <= 8"]
+                                    "browsers": ["defaults", "not ie <= 8"]
                                 }
                             }]
                         ]
@@ -29,10 +29,13 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     },
-    externals: {
-    }
+    externals: {}
 };
