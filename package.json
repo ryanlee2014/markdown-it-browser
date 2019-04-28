@@ -10,6 +10,7 @@
   "author": "Ryan Lee",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.4.4",
     "@ryanlee2014/markdown-it-katex": "^1.0.4",
     "katex": "^0.10.1",
     "markdown-it": "^8.4.2",
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",

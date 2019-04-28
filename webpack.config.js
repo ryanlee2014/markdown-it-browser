@@ -21,7 +21,8 @@ module.exports = {
                             "targets": {
                                 "browsers": ["defaults", "not ie <= 8"]
                             }
-                        }]]
+                        }]],
+                        plugins: ["@babel/plugin-transform-runtime","@babel/plugin-transform-modules-commonjs"]
                     }
                 }
             },
