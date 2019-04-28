@@ -17,13 +17,11 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [
-                            ["env", {
-                                "targets": {
-                                    "browsers": ["defaults", "not ie <= 8"]
-                                }
-                            }]
-                        ]
+                        presets: [["@babel/preset-env", {
+                            "targets": {
+                                "browsers": ["defaults", "not ie <= 8"]
+                            }
+                        }]]
                     }
                 }
             },
