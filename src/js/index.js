@@ -1,25 +1,23 @@
 import css from "../css/github-markdown.css"
 import css2 from "../css/github.min.css"
 import css3 from "katex/dist/katex.min.css"
-import markdownItMermaid from 'markdown-it-mermaid/src/index'
-import mh from "markdown-it-highlightjs"
-import mk from "@ryanlee2014/markdown-it-katex"
-import mc from "./markdonw-it-table-contents"
-import ma from "markdown-it-anchor"
-import mi from "./markdown-it-images-preview"
-import ml from "./markdown-it-links"
 function Instance(key = "", problem_id = "") {
     const md = require("markdown-it")({
         html: true,
         breaks: true
     });
+    const mh = require("markdown-it-highlightjs");
+    const mk = require("@ryanlee2014/markdown-it-katex");
+    const mc = require("./markdonw-it-table-contents");
+    const ma = require("markdown-it-anchor");
+    const mi = require("./markdown-it-images-preview");
     md.use(mk);
     md.use(mh);
     md.use(ma);
     md.use(mc, {includeLevel: [1, 2], listType: "div class='ui bulleted link list'"});
     md.use(mi);
-    md.use(ml);
-    md.use(markdownItMermaid);
+    md.use(require("./markdown-it-links"));
+    md.use(require("./markdown-it-mermaid").default);
 
     const markdownPack = (html) => {
         return `<div class="markdown-body">${html}</div>`;
@@ -45,5 +43,4 @@ function Instance(key = "", problem_id = "") {
 
 const md = Instance();
 md.newInstance = Instance;
-
 module.exports = md;
